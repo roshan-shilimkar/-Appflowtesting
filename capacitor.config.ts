@@ -9,8 +9,8 @@ const config: CapacitorConfig = {
   },
   plugins: {
     LiveUpdates: {
-      appId: 'FILL-ME-IN',
-      channel: 'Production',
+      appId: 'e29855fb',
+      channel: 'development',
       autoUpdateMethod: 'background',
       maxVersions: 2
     }
