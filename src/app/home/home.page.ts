@@ -14,11 +14,33 @@ export class HomePage {
   progress: any = 0;
   public current_status=""
   interval: any;
+  updateStatus:string="";
 
   constructor(
     private deploy: Deploy,
     private iab: InAppBrowser
   ) {}
+
+  async performManualUpdate() {
+    this.updateStatus = 'Checking for Update';
+    const update = await this.deploy.checkForUpdate()
+    if (update.available){
+      this.updateStatus = 'Update found. Downloading update';
+      await this.deploy.downloadUpdate((progress) => {
+        console.log(progress);
+      })
+      this.updateStatus = 'Update downloaded. Extracting update';
+      await this.deploy.extractUpdate((progress) => {
+        console.log(progress);
+      })
+      console.log('Reloading app');
+      this.updateStatus = 'Update extracted. Reloading app';
+      await this.deploy.reloadApp();
+    } else {
+      console.log('No update available');
+      this.updateStatus = 'No update available';
+    }
+   }
 
   async itemSelected() {
     console.log("item selected clicked");

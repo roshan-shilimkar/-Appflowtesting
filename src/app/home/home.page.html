@@ -1,8 +1,14 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <ion-buttons>
-      <ion-button (click)="itemSelected()">itemSelected ---------------------------++++++++++++++++++++++++++++++++</ion-button>
+      <ion-button (click)="itemSelected()">itemSelected
+        ---------------------------++++++++++++++++++++++++++++++++</ion-button>
+
+      <ion-button (click)="performManualUpdate()">perform manual update</ion-button>
+      <span *ngIf="updateStatus!=''">{{updateStatus}}</span>
     </ion-buttons>
   </div>
-  
+
+
+
 </ion-content>
