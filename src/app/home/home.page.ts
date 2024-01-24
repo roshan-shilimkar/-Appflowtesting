@@ -75,8 +75,9 @@ export class HomePage {
       '/index.html';
 
     //   this.path = 'file:///data/user/0/com.hdfc.ionicApps/files/ionic_built_snapshots/' + app_path + '/index.html';
-
+console.log("app_path = ",app_path);
     if (app_path == undefined) {
+      console.log("if condition");
       var toast_message =
         "e29855fb" + ' ' + 'missing..' + ' ' + 'fetching from server ..';
 
@@ -92,8 +93,12 @@ export class HomePage {
       //   clearcache: 'yes',
       //   clearsessioncache: 'yes',
       // });
+      console.log("else condition");
+
       const openCapacitorSite = async () => {
-        await Browser.open({ url: 'http://capacitorjs.com/' });
+        await Browser.open({ url: 'http://capacitorjs.com/' }).then(()=>{
+          console.log("browser opened");
+        });
       };
     }
   }
