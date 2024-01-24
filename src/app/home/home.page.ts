@@ -42,13 +42,29 @@ export class HomePage {
     }
    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+   
   async itemSelected() {
     console.log("item selected clicked");
+    debugger;
     const versions = await this.deploy.getAvailableVersions();
     console.log("Versions ", versions);
     // console.log('Selected Item', item);
     const app_path = this.seekChannels(versions, "development");
     console.log(app_path);
+
+    // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
     this.path =
       'file:///data/user/11/com.hdfc.ionicApps/files/ionic_built_snapshots/' +
       app_path +
