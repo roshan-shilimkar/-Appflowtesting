@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Deploy } from 'cordova-plugin-ionic/dist/ngx';
-import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Toast } from '@capacitor/toast';
 import { Network } from '@capacitor/network';
 import { Browser } from '@capacitor/browser';
@@ -19,7 +18,6 @@ export class HomePage {
 
   constructor(
     private deploy: Deploy,
-    private iab: InAppBrowser
   ) { }
 
   // async checkinternet() {
