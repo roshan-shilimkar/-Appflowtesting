@@ -66,7 +66,7 @@ export class HomePage {
 
     // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
     this.path =
-      'file:///data/user/11/com.hdfc.ionicApps/files/ionic_built_snapshots/' +
+      'file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
       app_path +
       '/index.html';
 
