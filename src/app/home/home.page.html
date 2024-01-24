@@ -1,24 +1,36 @@
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <ion-buttons>
-      <!-- <p>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!-- <p>
         <ion-button (click)="itemSelected()">itemSelected
           ---------------------------++++++++++++++++++++++++++++++++</ion-button>
       </p> -->
-      <!-- <h1>updated version</h1>-->
-      <p>
-        <ion-button (click)="performManualUpdate()">perform manual update</ion-button>
+        <!-- <h1>updated version</h1>-->
+        <ion-button (click)="performManualUpdate()">Perform manual update</ion-button>
         <span *ngIf="updateStatus!=''">{{updateStatus}}</span>
-      </p> 
-
-
-      <ion-button (click)="itemSelected()">itemSelected</ion-button>
-
-      <b> this is update for HR</b>
-
-    </ion-buttons>
-  </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="itemSelected()">itemSelected</ion-button>
+      </ion-col>
+    </ion-row>
 
 
 
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button (click)="checkinternet()">checkinternet</ion-button>
+      </ion-col>
+    </ion-row> -->
+
+
+
+    <ion-row>
+      <ion-col>
+        <b>this is update for HR 1</b>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -12,19 +12,24 @@ import { Network } from '@capacitor/network';
 export class HomePage {
   path: any;
   progress: any = 0;
-  public current_status=""
+  public current_status = ""
   interval: any;
-  updateStatus:string="";
+  updateStatus: string = "";
 
   constructor(
     private deploy: Deploy,
     private iab: InAppBrowser
-  ) {}
+  ) { }
+
+  // async checkinternet() {
+  //   console.log(conntype)
+  //   console.log( conntype && conntype !== 'unknown' && conntype !== 'none');
+  // }
 
   async performManualUpdate() {
     this.updateStatus = 'Checking for Update';
     const update = await this.deploy.checkForUpdate()
-    if (update.available){
+    if (update.available) {
       this.updateStatus = 'Update found. Downloading update';
       await this.deploy.downloadUpdate((progress) => {
         console.log(progress);
@@ -40,7 +45,7 @@ export class HomePage {
       console.log('No update available');
       this.updateStatus = 'No update available';
     }
-   }
+  }
 
 
 
@@ -54,7 +59,7 @@ export class HomePage {
 
 
 
-   
+
   async itemSelected() {
     console.log("item selected clicked");
     debugger;
@@ -101,16 +106,12 @@ export class HomePage {
   }
 
   async callUpdate_1() {
-    alert('inside call update');
+    // alert('inside call update');
     // let conntype = this.network.type;
 
-    const logCurrentNetworkStatus = async () => {
-      const status = await Network.getStatus();
-    };
+    let conntype = (await Network.getStatus()).connectionType;
 
-    let conntype = JSON.parse(
-      JSON.stringify(logCurrentNetworkStatus())
-    ).connectionType;
+    console.log("conntype Condition= ", conntype && conntype !== 'unknown' && conntype !== 'none');
 
     if (conntype && conntype !== 'unknown' && conntype !== 'none') {
       // if (this.syncflag == false) {
@@ -132,7 +133,7 @@ export class HomePage {
     }
   }
 
-  async performManualUpdatecrm(channel:any) {
+  async performManualUpdatecrm(channel: any) {
     // let loading_1 = this.loadingCtrl.create({
     //   spinner: 'crescent',
     // });
@@ -141,7 +142,7 @@ export class HomePage {
     // loading_1.present();
 
     const versions = await this.deploy.getAvailableVersions();
-    console.log("version = ",versions);
+    console.log("version = ", versions);
     const config = {
       appId: '040d0d97',
       channel: channel,
@@ -152,7 +153,7 @@ export class HomePage {
     var prevVersion = '';
     if (versions.length > 0) {
       prevVersion = await this.seekChannels(versions, channel);
-      console.log("prevVersion = ",prevVersion);
+      console.log("prevVersion = ", prevVersion);
     }
 
     try {
@@ -231,12 +232,12 @@ export class HomePage {
           this.progress = progress;
           this.current_status = channel + ' ' + 'download status';
 
-          console.log("downloadUpdate" ,progress);
+          console.log("downloadUpdate", progress);
         });
 
         await this.deploy.extractUpdate((progress) => {
           this.current_status = channel + ' ' + 'extract status';
-          console.log("extractUpdate" ,progress);
+          console.log("extractUpdate", progress);
 
           this.progress = progress;
         });
