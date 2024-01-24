@@ -3,6 +3,7 @@ import { Deploy } from 'cordova-plugin-ionic/dist/ngx';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Toast } from '@capacitor/toast';
 import { Network } from '@capacitor/network';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-home',
@@ -89,10 +90,13 @@ export class HomePage {
 
       this.callUpdate_1();
     } else {
-      const browser = this.iab.create(this.path, '_self', {
-        clearcache: 'yes',
-        clearsessioncache: 'yes',
-      });
+      // const browser = this.iab.create(this.path, '_self', {
+      //   clearcache: 'yes',
+      //   clearsessioncache: 'yes',
+      // });
+      const openCapacitorSite = async () => {
+        await Browser.open({ url: 'http://capacitorjs.com/' });
+      };
     }
   }
 
