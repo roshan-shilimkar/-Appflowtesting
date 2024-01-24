@@ -51,7 +51,9 @@ export class HomePage {
 
 
 
-
+  async openbrowser() {
+    await Browser.open({ url: 'http://capacitorjs.com/' })
+  }
 
 
 
@@ -75,7 +77,7 @@ export class HomePage {
       '/index.html';
 
     //   this.path = 'file:///data/user/0/com.hdfc.ionicApps/files/ionic_built_snapshots/' + app_path + '/index.html';
-console.log("app_path = ",app_path);
+    console.log("app_path = ", app_path);
     if (app_path == undefined) {
       console.log("if condition");
       var toast_message =
@@ -93,13 +95,7 @@ console.log("app_path = ",app_path);
       //   clearcache: 'yes',
       //   clearsessioncache: 'yes',
       // });
-      console.log("else condition");
-
-      const openCapacitorSite = async () => {
-        await Browser.open({ url: 'http://capacitorjs.com/' }).then(()=>{
-          console.log("browser opened");
-        });
-      };
+      await Browser.open({ url: this.path })
     }
   }
 
@@ -113,11 +109,7 @@ console.log("app_path = ",app_path);
   }
 
   async callUpdate_1() {
-    // alert('inside call update');
-    // let conntype = this.network.type;
-
     let conntype = (await Network.getStatus()).connectionType;
-
     console.log("conntype Condition= ", conntype && conntype !== 'unknown' && conntype !== 'none');
 
     if (conntype && conntype !== 'unknown' && conntype !== 'none') {
