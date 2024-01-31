@@ -3,6 +3,7 @@ import { Deploy } from 'cordova-plugin-ionic/dist/ngx';
 import { Toast } from '@capacitor/toast';
 import { Network } from '@capacitor/network';
 import { Browser } from '@capacitor/browser';
+import {InAppBrowser} from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ export class HomePage {
 
   constructor(
     private deploy: Deploy,
+    private inAppBrowser: InAppBrowser
   ) { }
 
   // async checkinternet() {
@@ -60,6 +62,10 @@ export class HomePage {
 
   async openbrowser() {
     await Browser.open({ url: 'http://capacitorjs.com/' })
+  }
+
+  openbrowser1(){
+    this.inAppBrowser.create('http://capacitorjs.com/');
   }
 
   async itemSelected(item: any) {
@@ -93,11 +99,11 @@ export class HomePage {
 
       this.callUpdate_1(item['APP_ID']);
     } else {
-      // const browser = this.iab.create(this.path, '_self', {
-      //   clearcache: 'yes',
-      //   clearsessioncache: 'yes',
-      // });
-      await Browser.open({ url: this.path })
+      const browser = this.inAppBrowser.create(this.path, '_self', {
+        clearcache: 'yes',
+        clearsessioncache: 'yes',
+      });
+      // await Browser.open({ url: this.path })
     }
   }
 
