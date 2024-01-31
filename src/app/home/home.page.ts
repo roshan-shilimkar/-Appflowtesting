@@ -17,17 +17,16 @@ export class HomePage {
   updateStatus: string = "";
 
 
-  Moduleslist:Array<any>=[
+  Moduleslist: Array<any> = [
     {
-    "ModuleName":"HR Module",
-    'APP_ID':'HR_module',
-  },
-
-  {
-    "ModuleName":"Development",
-    'APP_ID':'development',
-  },
-]
+      "ModuleName": "HR Module",
+      'APP_ID': 'HR_module',
+    },
+    {
+      "ModuleName": "Development",
+      'APP_ID': 'development',
+    },
+  ]
 
   constructor(
     private deploy: Deploy,
@@ -63,9 +62,10 @@ export class HomePage {
     await Browser.open({ url: 'http://capacitorjs.com/' })
   }
 
-  async itemSelected(item:any) {
-    console.log("item selected clicked");
-    debugger;
+  async itemSelected(item: any) {
+    console.log("item selected clicked", item);
+    console.log("item selected clicked", item['APP_ID']);
+
     const versions = await this.deploy.getAvailableVersions();
     console.log("Versions ", versions);
     // console.log('Selected Item', item);
@@ -110,7 +110,7 @@ export class HomePage {
     }
   }
 
-  async callUpdate_1(channel:any) {
+  async callUpdate_1(channel: any) {
     let conntype = (await Network.getStatus()).connectionType;
     console.log("conntype Condition= ", conntype && conntype !== 'unknown' && conntype !== 'none');
 

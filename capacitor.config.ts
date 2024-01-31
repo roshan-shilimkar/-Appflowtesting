@@ -7,14 +7,14 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'https'
   },
-  plugins: {
-    LiveUpdates: {
-      appId: 'e29855fb',
-      channel: 'development',
-      autoUpdateMethod: 'none',
-      maxVersions: 2
-    }
-  }
+  // plugins: {
+  //   LiveUpdates: {
+  //     appId: 'e29855fb',
+  //     channel: 'development',
+  //     autoUpdateMethod: 'none',
+  //     maxVersions: 2
+  //   }
+  // }
 };
 
 export default config;
