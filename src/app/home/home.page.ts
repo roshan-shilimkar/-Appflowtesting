@@ -16,6 +16,19 @@ export class HomePage {
   interval: any;
   updateStatus: string = "";
 
+
+  Moduleslist:Array<any>=[
+    {
+    "ModuleName":"HR Module",
+    'APP_ID':'HR_module',
+  },
+
+  {
+    "ModuleName":"Development",
+    'APP_ID':'development',
+  },
+]
+
   constructor(
     private deploy: Deploy,
   ) { }
@@ -46,28 +59,17 @@ export class HomePage {
     }
   }
 
-
-
-
-
-
   async openbrowser() {
     await Browser.open({ url: 'http://capacitorjs.com/' })
   }
 
-
-
-
-
-
-
-  async itemSelected() {
+  async itemSelected(item:any) {
     console.log("item selected clicked");
     debugger;
     const versions = await this.deploy.getAvailableVersions();
     console.log("Versions ", versions);
     // console.log('Selected Item', item);
-    const app_path = this.seekChannels(versions, "development");
+    const app_path = this.seekChannels(versions, item['APP_ID']);
     console.log(app_path);
 
     // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
@@ -89,7 +91,7 @@ export class HomePage {
         });
       };
 
-      this.callUpdate_1();
+      this.callUpdate_1(item['APP_ID']);
     } else {
       // const browser = this.iab.create(this.path, '_self', {
       //   clearcache: 'yes',
@@ -108,14 +110,13 @@ export class HomePage {
     }
   }
 
-  async callUpdate_1() {
+  async callUpdate_1(channel:any) {
     let conntype = (await Network.getStatus()).connectionType;
     console.log("conntype Condition= ", conntype && conntype !== 'unknown' && conntype !== 'none');
 
     if (conntype && conntype !== 'unknown' && conntype !== 'none') {
       // if (this.syncflag == false) {
       console.log('insdie call update');
-
       // this.syncflag = true;
       // for (var i = 0; i < this.packList.length; i++) {
       // console.log(this.packList[i]);
@@ -123,7 +124,7 @@ export class HomePage {
       this.progress = 0;
       // var channel_name= packList[i];
       // console.log(channel_name);
-      await this.performManualUpdatecrm("development");
+      await this.performManualUpdatecrm(channel);
       // }
       // this.syncflag = false;
       // }
@@ -143,7 +144,7 @@ export class HomePage {
     const versions = await this.deploy.getAvailableVersions();
     console.log("version = ", versions);
     const config = {
-      appId: '040d0d97',
+      appId: 'e29855fb',
       channel: channel,
     };
 

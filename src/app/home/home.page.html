@@ -11,20 +11,34 @@
         <span *ngIf="updateStatus!=''">{{updateStatus}}</span>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <ion-button (click)="itemSelected()">itemSelected</ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
+
     <ion-row>
       <ion-col>
         <ion-button (click)="openbrowser()">openbrowser</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row>
+
+    ////////////////////////////////////////////
+
+    <ion-row *ngFor="let item of Moduleslist" >
       <ion-col>
-        <b>this is update for HR 5</b>
+        <ion-button (click)="itemSelected(item)">
+        <b>{{item.ModuleName}}</b>
+      </ion-button>
       </ion-col>
     </ion-row>
+
+
+
+    <ion-row>
+      <ion-col>
+this is for hr.
+      </ion-col>
+      </ion-row>
   </ion-grid>
 </ion-content>
