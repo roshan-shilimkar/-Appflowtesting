@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'ionictesting',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    allowNavigation:['*']
   },
   // plugins: {
   //   LiveUpdates: {

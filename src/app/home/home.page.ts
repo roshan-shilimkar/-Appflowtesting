@@ -4,6 +4,7 @@ import { Toast } from '@capacitor/toast';
 import { Network } from '@capacitor/network';
 import { Browser } from '@capacitor/browser';
 import {InAppBrowser} from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { Capacitor, WebView } from '@capacitor/core';
 
 @Component({
   selector: 'app-home',
@@ -77,14 +78,25 @@ export class HomePage {
     // console.log('Selected Item', item);
     const app_path = this.seekChannels(versions, item['APP_ID']);
     console.log(app_path);
-
+    WebView.getServerBasePath().then((data)=>{
+      console.log("webview path ==============",data);
+    })
+    console.log("================");
+    console.log("convertFileSrc",Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14"));
     // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
     this.path =
-      'file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
-      app_path +
-      '/index.html';
-
+      'https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
+      app_path
+       + '/index.html';
+// 
+    // this.path ="/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14"
+      // /data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
     //   this.path = 'file:///data/user/0/com.hdfc.ionicApps/files/ionic_built_snapshots/' + app_path + '/index.html';
+
+
+
+
+    // https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
     console.log("app_path = ", app_path);
     if (app_path == undefined) {
       console.log("if condition");
