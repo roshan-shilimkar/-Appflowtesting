@@ -82,7 +82,7 @@ export class HomePage {
       console.log("webview path ==============",data);
     })
     console.log("================");
-    console.log("convertFileSrc",Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14"));
+    console.log("convertFileSrc",Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/"+app_path+""));
     // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
     this.path =
       'https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
@@ -111,6 +111,8 @@ export class HomePage {
 
       this.callUpdate_1(item['APP_ID']);
     } else {
+      console.log("else condition");
+
       const browser = this.inAppBrowser.create(this.path, '_self', {
         clearcache: 'yes',
         clearsessioncache: 'yes',
