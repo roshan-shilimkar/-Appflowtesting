@@ -3,7 +3,7 @@ import { Deploy } from 'cordova-plugin-ionic/dist/ngx';
 import { Toast } from '@capacitor/toast';
 import { Network } from '@capacitor/network';
 import { Browser } from '@capacitor/browser';
-import {InAppBrowser} from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Capacitor, WebView } from '@capacitor/core';
 
 @Component({
@@ -17,7 +17,7 @@ export class HomePage {
   public current_status = ""
   interval: any;
   updateStatus: string = "";
-
+  app_path:any;
 
   Moduleslist: Array<any> = [
     {
@@ -65,7 +65,7 @@ export class HomePage {
     await Browser.open({ url: 'http://capacitorjs.com/' })
   }
 
-  openbrowser1(){
+  openbrowser1() {
     this.inAppBrowser.create('http://capacitorjs.com/');
   }
 
@@ -76,29 +76,29 @@ export class HomePage {
     const versions = await this.deploy.getAvailableVersions();
     console.log("Versions ", versions);
     // console.log('Selected Item', item);
-    const app_path = this.seekChannels(versions, item['APP_ID']);
-    console.log(app_path);
-    WebView.getServerBasePath().then((data)=>{
-      console.log("webview path ==============",data);
+    this.app_path = this.seekChannels(versions, item['APP_ID']);
+    console.log(this.app_path);
+    WebView.getServerBasePath().then((data) => {
+      console.log("webview path ==============", data);
     })
     console.log("================");
-    console.log("convertFileSrc",Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/"+app_path+""));
+    console.log("convertFileSrc", Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/" + this.app_path + ""));
     // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
     this.path =
       'https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
-      app_path
-       + '/index.html';
-// 
+      this.app_path
+      + '/index.html';
+    // 
     // this.path ="/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14"
-      // /data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
+    // /data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
     //   this.path = 'file:///data/user/0/com.hdfc.ionicApps/files/ionic_built_snapshots/' + app_path + '/index.html';
 
 
 
 
     // https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
-    console.log("app_path = ", app_path);
-    if (app_path == undefined) {
+    console.log("app_path = ", this.app_path);
+    if (this.app_path == undefined) {
       console.log("if condition");
       var toast_message =
         "e29855fb" + ' ' + 'missing..' + ' ' + 'fetching from server ..';
@@ -119,6 +119,27 @@ export class HomePage {
       });
       // await Browser.open({ url: this.path })
     }
+  }
+
+
+
+  openfirstlink(){
+    this.inAppBrowser.create('https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
+    this.app_path
+    + '/index.html', '_self', {
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+    })
+  }
+
+
+  opensecolink(){
+    this.inAppBrowser.create('file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
+    this.app_path
+    + '/index.html', '_self', {
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+    })
   }
 
   seekChannels(versions: any, channel: any) {
