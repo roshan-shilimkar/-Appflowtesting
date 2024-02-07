@@ -17,7 +17,7 @@ export class HomePage {
   public current_status = ""
   interval: any;
   updateStatus: string = "";
-  app_path:any;
+  app_path: any;
 
   Moduleslist: Array<any> = [
     {
@@ -92,10 +92,6 @@ export class HomePage {
     // this.path ="/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14"
     // /data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
     //   this.path = 'file:///data/user/0/com.hdfc.ionicApps/files/ionic_built_snapshots/' + app_path + '/index.html';
-
-
-
-
     // https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
     console.log("app_path = ", this.app_path);
     if (this.app_path == undefined) {
@@ -123,20 +119,29 @@ export class HomePage {
 
 
 
-  openfirstlink(){
-    this.inAppBrowser.create('https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
-    this.app_path
-    + '/index.html', '_self', {
-      clearcache: 'yes',
-      clearsessioncache: 'yes',
-    })
+  openfirstlink() {
+    WebView.getServerBasePath()
+      .then(data => {
+        // console.log("getServerBasePath", data.path);
+        // public
+        WebView.setServerBasePath({ path: data.path }).then(data1=>{
+          alert("set server base path  called = "+data1);
+        });
+      });
+
+    // this.inAppBrowser.create('https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
+    //   this.app_path
+    //   + '/index.html', '_self', {
+    //   clearcache: 'yes',
+    //   clearsessioncache: 'yes',
+    // })
   }
 
 
-  opensecolink(){
+  opensecolink() {
     this.inAppBrowser.create('file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
-    this.app_path
-    + '/index.html', '_self', {
+      this.app_path
+      + '/index.html', '_self', {
       clearcache: 'yes',
       clearsessioncache: 'yes',
     })
