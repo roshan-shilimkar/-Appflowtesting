@@ -122,11 +122,15 @@ export class HomePage {
   openfirstlink() {
     WebView.getServerBasePath()
       .then(data => {
-        // console.log("getServerBasePath", data.path);
+        alert("getServerBasePath" + data.path);
+        this.inAppBrowser.create(data.path, '_self', {
+          clearcache: 'yes',
+          clearsessioncache: 'yes',
+        })
         // public
-        WebView.setServerBasePath({ path: data.path }).then(data1=>{
-          alert("set server base path  called = "+data1);
-        });
+        // WebView.setServerBasePath({ path: data.path }).then(data1=>{
+        //   alert("set server base path  called = "+data1);
+        // });
       });
 
     // this.inAppBrowser.create('https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
