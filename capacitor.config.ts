@@ -13,7 +13,7 @@ const config: CapacitorConfig = {
       appId: 'e29855fb',
       channel: 'development',
       autoUpdateMethod: 'none',
-      maxVersions: 2
+      maxVersions: 10
     }
   }
 };
