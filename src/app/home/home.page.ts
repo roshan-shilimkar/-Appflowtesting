@@ -108,20 +108,20 @@ export class HomePage {
     } else {
       console.log("else condition");
 
-      // const browser = this.inAppBrowser.create(this.path, '_self', {
-      //   clearcache: 'yes',
-      //   clearsessioncache: 'yes',
-      // });
-
-
-      WebView.getServerBasePath()
-      .then(data => {
-        alert("getServerBasePath" + data.path);
-        // public
-        WebView.setServerBasePath({ path: this.path }).then(data1 => {
-          alert("set server base path  called = " + data1);
-        });
+      const browser = this.inAppBrowser.create(this.path, '_self', {
+        clearcache: 'yes',
+        clearsessioncache: 'yes',
       });
+
+
+      // WebView.getServerBasePath()
+      // .then(data => {
+      //   alert("getServerBasePath" + data.path);
+      //   // public
+      //   WebView.setServerBasePath({ path: this.path }).then(data1 => {
+      //     alert("set server base path  called = " + data1);
+      //   });
+      // });
       // await Browser.open({ url: this.path })
     }
   }
