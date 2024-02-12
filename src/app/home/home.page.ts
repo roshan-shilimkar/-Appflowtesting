@@ -297,7 +297,7 @@ export class HomePage {
           this.progress = progress;
         });
 
-        console.log(prevVersion);
+        console.log("prevVersion",prevVersion);
         if (prevVersion != '') {
           this.deploy.deleteVersionById(prevVersion);
         }
@@ -305,7 +305,7 @@ export class HomePage {
 
         // loading.dismiss();
         // alert.dismiss();
-        //await this.deploy.reloadApp();
+        await this.deploy.reloadApp();
       }
       clearTimeout(this.interval);
     } catch (error) {
