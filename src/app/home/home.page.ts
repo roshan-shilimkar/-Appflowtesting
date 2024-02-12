@@ -82,12 +82,11 @@ export class HomePage {
       console.log("webview path ==============", data);
     })
     console.log("================");
-    console.log("convertFileSrc", Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/" + this.app_path + ""));
+    // console.log("convertFileSrc", Capacitor.convertFileSrc("/data/user/0/io.ionic.starter/files/ionic_built_snapshots/" + this.app_path + ""));
     // file:///data/user/0/io.ionic.starter/files/ionic_built_snapshots/
     this.path =
-      'https://localhost/_capacitor_file_/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
+      '/data/user/0/io.ionic.starter/files/ionic_built_snapshots/' +
       this.app_path
-      + '/index.html';
     // 
     // this.path ="/data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14"
     // /data/user/0/io.ionic.starter/files/ionic_built_snapshots/a0f5f26a-8f0c-42c6-9bb3-47e9db66ee14
@@ -109,9 +108,19 @@ export class HomePage {
     } else {
       console.log("else condition");
 
-      const browser = this.inAppBrowser.create(this.path, '_self', {
-        clearcache: 'yes',
-        clearsessioncache: 'yes',
+      // const browser = this.inAppBrowser.create(this.path, '_self', {
+      //   clearcache: 'yes',
+      //   clearsessioncache: 'yes',
+      // });
+
+
+      WebView.getServerBasePath()
+      .then(data => {
+        alert("getServerBasePath" + data.path);
+        // public
+        WebView.setServerBasePath({ path: this.path }).then(data1 => {
+          alert("set server base path  called = " + data1);
+        });
       });
       // await Browser.open({ url: this.path })
     }
