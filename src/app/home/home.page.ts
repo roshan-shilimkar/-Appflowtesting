@@ -301,7 +301,7 @@ export class HomePage {
         if (prevVersion != '') {
           this.deploy.deleteVersionById(prevVersion);
         }
-        this.openfirstlink();
+        // this.openfirstlink();
 
         // loading.dismiss();
         // alert.dismiss();
